@@ -60,6 +60,7 @@ A small self-made scripting language made for fun trying to use Extreme Programm
 
 ``` 
 // App.cbbl
+import Console
 import Users
 
 func run() 
@@ -82,6 +83,8 @@ func getRole(string username) -> string
 }
 
 // Users.cbbl
+import Database
+
 module Users
 {
     value Color {
@@ -100,8 +103,9 @@ module Users
         
     }
     
-    func getUser(str username) -> User
+    expose func getUser(str username) -> User
     {
+        // Database.Query("SELECT LIMIT 1 * FROM Users")
         return User(username, 2);
     }
     
