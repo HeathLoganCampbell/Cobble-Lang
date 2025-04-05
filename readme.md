@@ -84,6 +84,8 @@ func getRole(string username) -> string
 
 // Users.cbbl
 import Database
+import Console
+import Events
 
 module Users
 {
@@ -100,8 +102,12 @@ module Users
 
     func onLoad()
     {
-        
     }
+    
+    handler func onDelete(UserDeleteEvent e)
+    {
+        Console.writeLine("Deleted User");
+    } 
     
     expose func getUser(str username) -> User
     {
