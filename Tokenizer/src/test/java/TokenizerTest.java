@@ -48,6 +48,7 @@ public class TokenizerTest {
         Tokenizer tokenizer = new Tokenizer(input);
         List<Token> tokens = tokenizer.tokenize();
 
+        // func getRole(string username) -> string
         Assert.assertEquals(TokenType.FUNC, tokens.get(0).type);
         Assert.assertEquals(TokenType.IDENTIFIER, tokens.get(1).type);
         Assert.assertEquals("getRole", tokens.get(1).lexeme);
@@ -59,9 +60,46 @@ public class TokenizerTest {
         assertEquals(TokenType.RPAREN, tokens.get(5).type);
         assertEquals(TokenType.ARROW, tokens.get(6).type);
         assertEquals(TokenType.IDENTIFIER, tokens.get(7).type);
+
+        // {
         assertEquals(TokenType.LBRACE, tokens.get(8).type);
+
+        //  return username
         assertEquals(TokenType.RETURN, tokens.get(9).type);
         assertEquals(TokenType.IDENTIFIER, tokens.get(10).type);
+
+        // }
         assertEquals(TokenType.RBRACE, tokens.get(11).type);
+    }
+
+    @Test
+    public void testArrowAndColonVar() {
+        String input = """
+                func getRole() -> string
+                {
+                    var monkey = "monkey"
+                    return monkey
+                }
+                """;
+        Tokenizer tokenizer = new Tokenizer(input);
+        List<Token> tokens = tokenizer.tokenize();
+
+        // func getRole() -> string
+        Assert.assertEquals(TokenType.FUNC, tokens.get(0).type);
+        Assert.assertEquals(TokenType.IDENTIFIER, tokens.get(1).type);
+        Assert.assertEquals("getRole", tokens.get(1).lexeme);
+        assertEquals(TokenType.LPAREN, tokens.get(2).type);
+        assertEquals(TokenType.RPAREN, tokens.get(3).type);
+        assertEquals(TokenType.ARROW, tokens.get(4).type);
+        assertEquals(TokenType.IDENTIFIER, tokens.get(5).type);
+
+        // {
+        assertEquals(TokenType.LBRACE, tokens.get(6).type);
+
+        //      var monkey = "monkey"
+        assertEquals(TokenType.IDENTIFIER, tokens.get(7).type);
+        assertEquals(TokenType.IDENTIFIER, tokens.get(8).type);
+        assertEquals(TokenType.ASSIGN, tokens.get(9).type);
+        assertEquals(TokenType.STRING, tokens.get(10).type);
     }
 }

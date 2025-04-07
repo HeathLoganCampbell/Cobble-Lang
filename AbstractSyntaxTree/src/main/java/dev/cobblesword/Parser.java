@@ -13,16 +13,29 @@ public class Parser {
 
     public List<AstNode> parse() {
         List<AstNode> program = new ArrayList<>();
-        while (!isAtEnd()) {
-            if (match(TokenType.FUNC)) {
+        while (!isAtEnd())
+        {
+            System.out.println("> "+peek().type + " " + tokens.size());
+
+            if (match(TokenType.FUNC))
+            {
+                System.out.println("function");
                 program.add(parseFunction());
-            } else if (match(TokenType.IDENTIFIER) && peek().type == TokenType.ASSIGN) {
+            }
+            else if (match(TokenType.IDENTIFIER) && peek().type == TokenType.ASSIGN)
+            {
                 // Not real var decl logic yet
+                System.out.println(" fuckkkk");
                 throw error(peek(), "Top-level assignment not supported yet.");
-            } else {
+            }
+            else
+            {
+                System.out.println("skip");
                 advance(); // skip
             }
         }
+
+        System.out.println("===========");
         return program;
     }
 
@@ -70,7 +83,8 @@ public class Parser {
 
     private boolean match(TokenType type) {
         if (check(type)) {
-            advance(); return true;
+            advance();
+            return true;
         }
         return false;
     }
@@ -92,7 +106,11 @@ public class Parser {
 
     private Token peek() { return tokens.get(current); }
     private Token previous() { return tokens.get(current - 1); }
-    private boolean isAtEnd() { return peek().type == TokenType.EOF; }
+    private boolean isAtEnd()
+    {
+        System.out.println("||END? " + peek().type + " " + tokens.size());
+        return peek().type == TokenType.EOF;
+    }
 
     private RuntimeException error(Token token, String message) {
         return new RuntimeException("Parse error at line " + token.line + ": " + message);

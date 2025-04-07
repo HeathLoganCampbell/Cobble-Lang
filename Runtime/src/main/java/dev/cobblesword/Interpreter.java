@@ -31,6 +31,8 @@ public class Interpreter {
 
     private Object executeBlock(Block block) {
         for (AstNode stmt : block.statements()) {
+            System.out.println(stmt);
+
             if (stmt instanceof ReturnStmt ret) {
                 return evaluate(ret.expression());
             } else if (stmt instanceof VarDecl decl) {
