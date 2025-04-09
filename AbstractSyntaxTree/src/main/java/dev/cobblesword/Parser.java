@@ -90,7 +90,7 @@ public class Parser {
         if (check(TokenType.STRING)) {
             value = new StringLiteral(advance().lexeme);
         } else if (check(TokenType.IDENTIFIER)) {
-            value = new Identifier(advance().lexeme);
+            value = new Identifier(varName);
         } else {
             throw error(peek(), "Expected expression after '='");
         }
