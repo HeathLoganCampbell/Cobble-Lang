@@ -57,15 +57,46 @@ public class Parser {
         consume(TokenType.LBRACE, "Expected '{'");
         List<AstNode> statements = new ArrayList<>();
         while (!check(TokenType.RBRACE) && !isAtEnd()) {
-            if (match(TokenType.RETURN)) {
-                statements.add(parseReturn());
-            } else {
-                advance(); // skip
-            }
+            AstNode astNode = parseStatement();
+            if (astNode == null) continue;
+            statements.add(astNode);
         }
+
         consume(TokenType.RBRACE, "Expected '}'");
         return new Block(statements);
     }
+
+    private AstNode parseStatement() {
+        if (match(TokenType.RETURN)) {
+            return parseReturn();
+        }
+        else if (check(TokenType.IDENTIFIER) && lookahead(1).type == TokenType.ASSIGN) {
+            return parseVarDecl();
+        }
+        else
+        {
+            advance(); // skip
+        }
+
+        return null;
+    }
+
+    private VarDecl parseVarDecl() {
+        String name = previous().lexeme;
+        String varName = peek().lexeme;
+        advance();
+        consume(TokenType.ASSIGN, "Expected '=' after variable name");
+        AstNode value;
+        if (check(TokenType.STRING)) {
+            value = new StringLiteral(advance().lexeme);
+        } else if (check(TokenType.IDENTIFIER)) {
+            value = new Identifier(advance().lexeme);
+        } else {
+            throw error(peek(), "Expected expression after '='");
+        }
+        return new VarDecl(name, value);
+    }
+
 
     private ReturnStmt parseReturn() {
         AstNode value;
@@ -102,6 +133,11 @@ public class Parser {
     private Token consume(TokenType type, String message) {
         if (check(type)) return advance();
         throw error(peek(), message);
+    }
+
+    private Token lookahead(int distance) {
+        if (current + distance >= tokens.size()) return tokens.get(tokens.size() - 1);
+        return tokens.get(current + distance);
     }
 
     private Token peek() { return tokens.get(current); }
