@@ -1,4 +1,4 @@
-# ADR-004: Tree-Walk vs Bytecode VM
+# ADR-005: Static vs Dynamic vs Gradual Typing
 
 ## Status
 Accepted
