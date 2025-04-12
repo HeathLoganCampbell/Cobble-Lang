@@ -4,19 +4,28 @@
 Accepted
 
 ## Context
-We have roughly 3 options we can go with
-* Compile: Compiling down to machine code (eg C++).
-* Interpret: Parse and Interpret (eg python, javascript).
-* Transpile: Convert our language to another language (eg typescript).
+There are three main approaches to running a custom programming language:
 
-Compile is high effort but really efficient
-Interpret is not as efficient but is a lot simpler
-Transpile leverages existing work very effectively & could probably be put in production, but is too easy. 
+* Compile => Convert to machine code (e.g. C++, Rust)
+  * ✅ High performance
+  * ❌ High complexity, harder iteration
+
+* Interpret → Parse and execute directly (e.g. Python, JavaScript)
+  * ✅ Easier to build and evolve
+  * ❌ Slower runtime performance
+
+* Transpile → Convert to another language (e.g. TypeScript → JS, Elm → JS)
+  * ✅ Leverages existing tooling, easier to ship
+  * ❌ Less educational, not “pure” enough for this exercise
+
+My goals for this project are learning, exploration, and fun—not production-readiness or raw performance. Interpretation strikes a good balance between challenge and feasibility.
 
 ## Decision
-We will go Interpret, because it offers enough challenge to be fun.
-even tho Transpile would be quicker to prototype, and more production ready.
+I will implement the language as a tree-walk interpreter (initially).
+This gives me space to focus on parsing, AST structure, and evaluation logic.
+Transpiration is ruled out for now because it would shortcut the learning experience too much.
 
 ## Consequences
-* We probably cannot use it in production ever.
-* It'll likely take a long to make.
+* Unlikely to be performant enough for production use.
+* Will take longer than transpiling, but will deepen understanding of language design.
+* May eventually switch to transpiling or compiling if project goals change.
