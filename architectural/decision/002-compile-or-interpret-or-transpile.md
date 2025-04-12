@@ -1,4 +1,4 @@
-# ADR-NNN: [Title of the decision]
+# ADR-002: Compile Or Interpret Or Transpile
 
 ## Status
 [ Accepted ]
@@ -19,4 +19,4 @@ even tho Transpile would be quicker to prototype, and more production ready.
 
 ## Consequences
 * We probably cannot use it in production ever.
-* It'll likely take a bit long
+* It'll likely take a long to make.
