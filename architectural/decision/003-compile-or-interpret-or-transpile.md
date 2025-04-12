@@ -1,7 +1,7 @@
 # ADR-003: Compile Or Interpret Or Transpile
 
 ## Status
-[ Accepted ]
+Accepted
 
 ## Context
 We have roughly 3 options we can go with

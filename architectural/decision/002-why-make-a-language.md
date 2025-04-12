@@ -1,7 +1,7 @@
 # ADR-002: Why make a lanuge
 
 ## Status
-[ Accepted ]
+Accepted
 
 ## Context
 I read the book Domain Driven design and realised that there is a mismatch between the tools and the 
