@@ -1,4 +1,4 @@
-# ADR-001: Why make a lanuge
+# ADR-002: Why make a lanuge
 
 ## Status
 [ Accepted ]
