@@ -82,6 +82,12 @@ func getRole(string username) -> string
     }
 }
 
+// Report.cbbl
+module Report
+{
+    
+}
+
 // Users.cbbl
 import Database
 import Console
