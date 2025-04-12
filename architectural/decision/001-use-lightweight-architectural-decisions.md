@@ -15,7 +15,7 @@ me reflect and avoid that.
 * I will adopt the Architecture Decision Record (ADR) pattern for this project.
 * ADRs will be stored as individual markdown files in `architectural/decision`
 * I will write one whenever a decision has long-term impact, is difficult to reverse, or requires trade-offs.
-* Each ADR will follow a simple, structured format focused on context, decision, and consequences.
+* Each ADR will follow a simple, structured format focused on context, decision, and consequences. This can be found at `architectural/decision/000-template.md` 
 * I’ll keep them short—no more than 1 page.
 
 ## Consequences
